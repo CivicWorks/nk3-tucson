@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>No Kings 3: Tucson — March 28, 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <style>
   :root {
     --red: #C8102E;
@@ -756,10 +758,10 @@
   <div style="max-width:1100px; margin:0 auto; padding: 0 2rem;">
     <p class="section-eyebrow">The Route</p>
     <h2 class="section-title">Oracle Road,<br>Corner to Corner</h2>
-    <p style="color: rgba(245,240,232,0.7); max-width:600px; margin-bottom:2.5rem; line-height:1.7;">Six intersections stretching from Tucson to Oro Valley. Find your corner, show up at 9AM, then caravan north to the central gathering at noon.</p>
+    <p style="color: rgba(245,240,232,0.7); max-width:600px; margin-bottom:2.5rem; line-height:1.7;">Six intersections stretching from Tucson to Oro Valley. Rally at your corner 9AM–11AM, then caravan south to the central Tucson gathering at noon.</p>
   </div>
 
-  <div id="map" style="width:100%; height:520px; position:relative; z-index:1;"></div>
+  <div id="map" style="width:100%; height:520px; position:relative; z-index:1; border-top:4px solid var(--red); border-bottom:4px solid var(--red);"></div>
 
   <!-- Map legend -->
   <div style="max-width:1100px; margin:0 auto; padding: 2rem 2rem 0;">
@@ -776,54 +778,59 @@
   </div>
 </div>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script>
-(function() {
-  var map = L.map('map', { zoomControl: true, scrollWheelZoom: false }).setView([32.326, -110.976], 12);
+  <script>
+window.addEventListener('load', function() {
+  var map = L.map('map', { zoomControl: true, scrollWheelZoom: false });
+  
+  // Fit to show all corners — south to north along Oracle Road
+  map.setView([32.330, -110.972], 12);
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    maxZoom: 19
+  // OpenStreetMap tiles — reliable, full street detail
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    subdomains: ['a','b','c'],
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
+  // Corners in south-to-north order along Oracle Road
   var corners = [
-    { num: 1, name: "Oracle & 1st Ave", lat: 32.3999273, lng: -110.9552743, note: "Southernmost rally point" },
-    { num: 2, name: "Oracle & Wetmore", lat: 32.2863994, lng: -110.9782871, note: "Corner rally" },
-    { num: 3, name: "Oracle & River Rd", lat: 32.297224,  lng: -110.9782177, note: "Corner rally" },
-    { num: 4, name: "Oracle & Orange Grove", lat: 32.322634, lng: -110.9746796, note: "Corner rally" },
-    { num: 5, name: "Oracle & Ina Rd", lat: 32.3370763, lng: -110.9773631, note: "Corner rally" },
-    { num: 6, name: "Oracle & Magee Rd", lat: 32.3517163, lng: -110.9747636, note: "Northernmost rally point" }
+    { num: 1, name: "Oracle & Wetmore", lat: 32.2863994, lng: -110.9782871, note: "Southernmost rally point" },
+    { num: 2, name: "Oracle & River Rd", lat: 32.297224,  lng: -110.9782177, note: "Corner rally" },
+    { num: 3, name: "Oracle & Orange Grove", lat: 32.322634, lng: -110.9746796, note: "Corner rally" },
+    { num: 4, name: "Oracle & Ina Rd", lat: 32.3370763, lng: -110.9773631, note: "Corner rally" },
+    { num: 5, name: "Oracle & Magee Rd", lat: 32.3517163, lng: -110.9747636, note: "Corner rally" },
+    { num: 6, name: "Oracle & 1st Ave", lat: 32.3999273, lng: -110.9552743, note: "Northernmost rally point" }
   ];
 
-  // Draw route line
+  // Gold dashed route line
   var routeCoords = corners.map(function(c) { return [c.lat, c.lng]; });
-  L.polyline(routeCoords, { color: '#D4A017', weight: 3, dashArray: '8, 6', opacity: 0.7 }).addTo(map);
+  L.polyline(routeCoords, { color: '#D4A017', weight: 4, dashArray: '10, 7', opacity: 0.85 }).addTo(map);
 
-  // Custom marker icon
-  function makeIcon(num) {
-    return L.divIcon({
+  // Numbered red circle markers
+  for (var i = 0; i < corners.length; i++) {
+    var c = corners[i];
+    var icon = L.divIcon({
       className: '',
-      html: '<div style="width:36px;height:36px;background:#C8102E;border:3px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Bebas Neue,sans-serif;font-size:1rem;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.6);">' + num + '</div>',
-      iconSize: [36, 36],
-      iconAnchor: [18, 18],
-      popupAnchor: [0, -20]
+      html: '<div style="width:38px;height:38px;background:#C8102E;border:3px solid #ffffff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:1.1rem;font-weight:bold;color:#fff;box-shadow:0 3px 10px rgba(0,0,0,0.5);">' + c.num + '</div>',
+      iconSize: [38, 38],
+      iconAnchor: [19, 19],
+      popupAnchor: [0, -22]
     });
-  }
-
-  corners.forEach(function(c) {
-    L.marker([c.lat, c.lng], { icon: makeIcon(c.num) })
+    L.marker([c.lat, c.lng], { icon: icon })
       .addTo(map)
       .bindPopup(
-        '<div style="font-family:Oswald,sans-serif;min-width:160px;">' +
-        '<div style="font-size:0.7rem;letter-spacing:0.2em;color:#C8102E;text-transform:uppercase;margin-bottom:4px;">Corner ' + c.num + '</div>' +
-        '<div style="font-size:1.1rem;font-weight:700;color:#111;margin-bottom:4px;">' + c.name + '</div>' +
-        '<div style="font-size:0.85rem;color:#555;">9:00 AM – 11:00 AM</div>' +
-        '<div style="font-size:0.8rem;color:#888;margin-top:4px;">' + c.note + '</div>' +
+        '<div style="font-family:Georgia,serif;min-width:170px;padding:4px;">' +
+        '<div style="font-size:0.7rem;letter-spacing:0.15em;color:#C8102E;text-transform:uppercase;margin-bottom:5px;font-family:Arial,sans-serif;">Corner ' + c.num + '</div>' +
+        '<div style="font-size:1rem;font-weight:bold;color:#111;margin-bottom:5px;">' + c.name + '</div>' +
+        '<div style="font-size:0.85rem;color:#444;">9:00 AM – 11:00 AM</div>' +
+        '<div style="font-size:0.8rem;color:#777;margin-top:4px;">' + c.note + '</div>' +
         '</div>'
       );
-  });
-})();
+  }
+
+  // Fit map bounds to all markers
+  map.fitBounds(routeCoords, { padding: [40, 40] });
+});
 </script>
 
 <div class="divider"></div>
@@ -924,15 +931,8 @@
       Non-Violent &nbsp;·&nbsp; Family Friendly &nbsp;·&nbsp; Community Rooted &nbsp;·&nbsp; Democracy in Action
     </p>
     <p style="margin-top:1.5rem;">
-      <a href="mailto:info@nokings.org">info@nokings.org</a>
+      <a href="/cdn-cgi/l/email-protection#6801060e072806070301060f1b46071a0f"><span class="__cf_email__" data-cfemail="523b3c343d123c3d393b3c35217c3d2035">[email&#160;protected]</span></a>
       &nbsp;&nbsp;·&nbsp;&nbsp;
       <a href="https://nokings.org" target="_blank">nokings.org</a>
     </p>
-    <p style="margin-top:1rem; font-size:0.8rem; color:rgba(245,240,232,0.25);">
-      No Kings 3: Tucson to Oro Valley · March 28, 2026 · Southern Arizona
-    </p>
-  </div>
-</footer>
-
-</body>
-</html>
+    <p style="margin-top:1rem; font-size:0.8rem; color:rgba(245,240,232,0.
