@@ -74,61 +74,20 @@
     background: repeating-linear-gradient(90deg, var(--navy) 0px, var(--navy) 40px, var(--white) 40px, var(--white) 80px, var(--red) 80px, var(--red) 120px);
   }
 
- .nk-logo {
-  position: relative;
-  z-index: 2;
-  margin-bottom: 1rem;
-  width: 100%;
-  max-width: 900px;
-}
-
-  .nk-logo img {
-    height: 80px;
-    filter: brightness(1.1);
-  }
-
-  .hero-eyebrow {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.9rem;
-    letter-spacing: 0.3em;
-    color: var(--red);
-    text-transform: uppercase;
+  .nk-banner {
     position: relative;
     z-index: 2;
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(4rem, 12vw, 9rem);
-    line-height: 0.9;
-    color: var(--white);
-    position: relative;
-    z-index: 2;
-    text-shadow: 4px 4px 0 var(--red), 8px 8px 0 rgba(200,16,46,0.3);
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 2rem;
     animation: titleIn 0.8s ease-out both;
   }
 
-  .hero-title span {
-    color: var(--red);
+  .nk-banner img {
+    width: 100%;
+    height: auto;
     display: block;
-  }
-
-  @keyframes titleIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-subtitle {
-    font-family: 'Oswald', sans-serif;
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
-    font-weight: 400;
-    color: var(--cream);
-    position: relative;
-    z-index: 2;
-    margin: 1.5rem 0;
-    letter-spacing: 0.05em;
-    animation: titleIn 0.8s 0.2s ease-out both;
+    border-radius: 4px;
   }
 
   .hero-date {
@@ -138,7 +97,12 @@
     position: relative;
     z-index: 2;
     letter-spacing: 0.1em;
-    animation: titleIn 0.8s 0.4s ease-out both;
+    animation: titleIn 0.8s 0.2s ease-out both;
+  }
+
+  @keyframes titleIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   .hero-desc {
@@ -149,7 +113,7 @@
     position: relative;
     z-index: 2;
     margin: 2rem auto;
-    animation: titleIn 0.8s 0.6s ease-out both;
+    animation: titleIn 0.8s 0.4s ease-out both;
   }
 
   .hero-cta {
@@ -159,7 +123,7 @@
     flex-wrap: wrap;
     position: relative;
     z-index: 2;
-    animation: titleIn 0.8s 0.8s ease-out both;
+    animation: titleIn 0.8s 0.6s ease-out both;
   }
 
   .btn-primary {
@@ -636,19 +600,10 @@
 <div class="hero">
   <div class="hero-stripes"></div>
 
-  <div class="nk-logo">
-<img src="NKD3_OV_BANNER.jpg" alt="No Kings March 28 — Tucson to Oro Valley — Corners of Democracy — 8 Miles of Action" style="width:100%; max-width:900px; display:block; margin:0 auto;">
+  <div class="nk-banner">
+    <img src="NKD3_OV_BANNER.jpg" alt="No Kings March 28 — Tucson to Oro Valley — Corners of Democracy — 8 Miles of Action">
   </div>
 
-  <p class="hero-eyebrow">Southern Arizona Stands Up · March 28, 2026</p>
-
-  <h1 class="hero-title">
-    TUCSON<br>
-    <span>TO ORO</span>
-    VALLEY
-  </h1>
-
-  <p class="hero-subtitle">Democracy in Action — Corner by Corner, Community by Community</p>
   <p class="hero-date">Saturday, March 28, 2026 &nbsp;·&nbsp; 9:00 AM — 4:00 PM</p>
 
   <p class="hero-desc">
@@ -780,21 +735,18 @@
   </div>
 </div>
 
-  <script>
+<script>
 window.addEventListener('load', function() {
   var map = L.map('map', { zoomControl: true, scrollWheelZoom: false });
   
-  // Fit to show all corners — south to north along Oracle Road
   map.setView([32.330, -110.972], 12);
 
-  // OpenStreetMap tiles — reliable, full street detail
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     subdomains: ['a','b','c'],
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
-  // Corners in south-to-north order along Oracle Road
   var corners = [
     { num: 1, name: "Oracle & Wetmore", lat: 32.2863994, lng: -110.9782871, note: "Southernmost rally point" },
     { num: 2, name: "Oracle & River Rd", lat: 32.297224,  lng: -110.9782177, note: "Corner rally" },
@@ -804,11 +756,9 @@ window.addEventListener('load', function() {
     { num: 6, name: "Oracle & 1st Ave", lat: 32.3999273, lng: -110.9552743, note: "Northernmost rally point" }
   ];
 
-  // Gold dashed route line
   var routeCoords = corners.map(function(c) { return [c.lat, c.lng]; });
   L.polyline(routeCoords, { color: '#D4A017', weight: 4, dashArray: '10, 7', opacity: 0.85 }).addTo(map);
 
-  // Numbered red circle markers
   for (var i = 0; i < corners.length; i++) {
     var c = corners[i];
     var icon = L.divIcon({
@@ -830,7 +780,6 @@ window.addEventListener('load', function() {
       );
   }
 
-  // Fit map bounds to all markers
   map.fitBounds(routeCoords, { padding: [40, 40] });
 });
 </script>
@@ -933,8 +882,12 @@ window.addEventListener('load', function() {
       Non-Violent &nbsp;·&nbsp; Family Friendly &nbsp;·&nbsp; Community Rooted &nbsp;·&nbsp; Democracy in Action
     </p>
     <p style="margin-top:1.5rem;">
-      <a href="/cdn-cgi/l/email-protection#6801060e072806070301060f1b46071a0f"><span class="__cf_email__" data-cfemail="523b3c343d123c3d393b3c35217c3d2035">[email&#160;protected]</span></a>
+      <a href="mailto:nk3tucsonov@proton.me">nk3tucsonov@proton.me</a>
       &nbsp;&nbsp;·&nbsp;&nbsp;
       <a href="https://nokings.org" target="_blank">nokings.org</a>
     </p>
-    <p style="margin-top:1rem; font-size:0.8rem; color:rgba(245,240,232,0.
+  </div>
+</footer>
+
+</body>
+</html>
