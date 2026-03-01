@@ -311,6 +311,13 @@
     position: relative;
     transition: all 0.2s;
   }
+  /* reset link styles when card is wrapped in <a> */
+a.intersection-card,
+a.intersection-card * {
+  text-decoration: none;
+  color: inherit;
+  font-family: inherit;
+}
 
   .intersection-card:hover {
     border-color: var(--red);
