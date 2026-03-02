@@ -311,11 +311,11 @@
     position: relative;
     transition: all 0.2s;
   }
-.intersection-card a {
-  color: inherit;
-  text-decoration: underline;
-  font-style: normal;
-}
+  .intersection-card a {
+    color: inherit;
+    text-decoration: underline;
+    font-style: normal;
+  }
 
   .intersection-card:hover {
     border-color: var(--red);
@@ -557,6 +557,76 @@
     color: rgba(245,240,232,0.65);
   }
 
+  /* CONDUCT & LIABILITY NOTICE */
+  .notice-section {
+    background: var(--dark);
+    padding: 4rem 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .notice-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .notice-box {
+    border: 1px solid rgba(200,16,46,0.25);
+    border-left: 3px solid var(--red);
+    background: rgba(10,22,40,0.6);
+    padding: 2.5rem;
+  }
+
+  .notice-box .section-eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  .notice-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .notice-box p {
+    font-size: 0.92rem;
+    line-height: 1.75;
+    color: rgba(245,240,232,0.7);
+    margin-bottom: 1rem;
+  }
+
+  .notice-box p:last-child {
+    margin-bottom: 0;
+  }
+
+  .notice-box p strong {
+    color: rgba(245,240,232,0.9);
+  }
+
+  .notice-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin: 1.5rem 0;
+  }
+
+  .notice-contact {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    color: rgba(245,240,232,0.55);
+  }
+
+  .notice-contact a {
+    color: var(--gold);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .notice-contact a:hover {
+    color: var(--cream);
+  }
+
   /* FOOTER */
   footer {
     background: var(--dark);
@@ -596,6 +666,7 @@
     .intersection-grid { grid-template-columns: 1fr; }
     .oracle-track::before { left: 10px; }
     .central-details { flex-direction: column; gap: 1rem; }
+    .notice-box { padding: 1.75rem; }
   }
 </style>
 </head>
@@ -825,11 +896,11 @@ window.addEventListener('load', function() {
         <h3>Family Friendly</h3>
         <p>All ages are welcome. We model peaceful civic participation for the next generation.</p>
       </div>
-<div class="principle">
-  <span class="principle-icon">🛡️</span>
-  <h3>Safety</h3>
-  <p>Trained safety volunteers will be present at every corner to support a peaceful, safe experience for all.</p>
-</div>
+      <div class="principle">
+        <span class="principle-icon">🛡️</span>
+        <h3>Safety</h3>
+        <p>Trained safety volunteers will be present at every corner to support a peaceful, safe experience for all.</p>
+      </div>
       <div class="principle">
         <span class="principle-icon">🤝</span>
         <h3>Community Rooted</h3>
@@ -861,6 +932,34 @@ window.addEventListener('load', function() {
         <h3>Know Your Rights</h3>
         <p>Understand your legal rights as a protester before you show up.</p>
       </a>
+    </div>
+  </div>
+</div>
+
+<!-- PARTICIPANT GUIDELINES & EVENT NOTICE -->
+<div class="notice-section">
+  <div class="notice-inner">
+    <div class="notice-box">
+      <p class="section-eyebrow">Participant Guidelines &amp; Event Notice</p>
+      <h3 class="notice-heading">Commitment to Nonviolent Action</h3>
+
+      <p>A core principle behind all No Kings events is a commitment to nonviolent action. We expect all participants to seek to de-escalate any potential confrontation with those who disagree with our values and that we act lawfully at these events. <strong>Weapons of any kind, including those legally permitted, should not be brought to events.</strong></p>
+
+      <div class="notice-divider"></div>
+
+      <p>This event is organized by local volunteers in the Tucson community. It is not sponsored by, financially supported by, or formally affiliated with any national organization unless explicitly stated. Participating groups are independent and responsible for their own messaging and activities.</p>
+
+      <p>By attending this event, participants acknowledge that demonstrations in public spaces carry inherent risks, including interaction with counter-protesters, traffic, and environmental conditions. Each participant assumes responsibility for their own safety and personal property.</p>
+
+      <p>Local hosts and volunteers are not agents of one another and do not exercise control over independently organized gatherings.</p>
+
+      <p>This event does not collect or distribute funds. No donations are being solicited or accepted by the organizers.</p>
+
+      <div class="notice-divider"></div>
+
+      <p>Additionally, consider carpooling with family, friends, and neighbors. Park legally to avoid unpleasant post-demonstration surprises.</p>
+
+      <p class="notice-contact">For inquiries, please contact <a href="mailto:info@nokings.org">info@nokings.org</a></p>
     </div>
   </div>
 </div>
