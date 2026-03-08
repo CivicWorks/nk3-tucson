@@ -397,10 +397,14 @@
     z-index: 1;
   }
 
-  .central-rally .section-eyebrow { color: rgba(255,255,255,0.7); }
+  .central-rally .section-eyebrow {
+    color: rgba(255,255,255,0.7);
+    line-height: 2;
+  }
+
   .central-rally .section-title { color: var(--white); }
 
-  /* FIX: Take Action Tucson link styling */
+  /* FIX: section-title link styling */
   .central-rally .section-title a {
     color: var(--white);
     text-decoration: none;
@@ -408,6 +412,16 @@
 
   .central-rally .section-title a:hover {
     text-decoration: underline;
+  }
+
+  /* FIX: section-eyebrow link styling */
+  .central-rally .section-eyebrow a {
+    color: var(--white);
+    text-decoration: underline;
+  }
+
+  .central-rally .section-eyebrow a:hover {
+    color: var(--cream);
   }
 
   .central-details {
@@ -865,8 +879,11 @@ window.addEventListener('load', function() {
 <!-- CENTRAL RALLY -->
 <div class="central-rally">
   <div class="central-inner">
-    <p class="section-eyebrow">For other gatherings and actions in Tucson.</p>
-    <h2 class="section-title">Visit<br><a href="https://www.takeactiontucson.org/">Take Action Tucson</a></h2>
+    <p class="section-eyebrow">For other gatherings and actions in Tucson:<br><br>
+      <a href="https://www.mobilize.us/mobilize/event/905718/">Marana at Dove Mountain Retail Center</a><br>
+      <a href="https://www.mobilize.us/mobilize/event/905416/">Marana at Silver Bell and N. Cortoro</a><br><br>
+    </p>
+    <h2 class="section-title"><a href="https://www.takeactiontucson.org/">and Visit Take Action Tucson</a></h2>
   </div>
 </div>
 
