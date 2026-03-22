@@ -265,37 +265,6 @@
     padding: 0 2rem;
   }
 
-  .oracle-line {
-    position: relative;
-    margin-top: 4rem;
-  }
-
-  .oracle-label {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.3em;
-    color: rgba(245,240,232,0.4);
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .oracle-track {
-    position: relative;
-    padding: 0;
-  }
-
-  .oracle-track::before {
-    content: 'ORACLE ROAD';
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    transform: translateX(-50%);
-    width: 4px;
-    background: linear-gradient(to bottom, var(--red), var(--navy));
-    z-index: 0;
-  }
-
   .intersection-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -367,6 +336,87 @@
     margin-bottom: 0.75rem;
   }
 
+  /* PARTICIPANT MAP LINK */
+  .map-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.9rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: underline;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .map-link:hover { color: var(--cream); }
+  .map-link svg {
+    width: 13px;
+    height: 13px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  /* LIGHTBOX */
+  .map-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: rgba(5,13,26,0.93);
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+  .map-lightbox.open { display: flex; }
+
+  .map-lightbox-inner {
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+  }
+  .map-lightbox-inner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 2px solid rgba(200,16,46,0.45);
+  }
+  .map-lightbox-caption {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: rgba(245,240,232,0.4);
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 0.7rem;
+  }
+  .map-lightbox-close {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 34px;
+    height: 34px;
+    background: var(--red);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 1rem;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    transition: background 0.2s;
+    z-index: 1;
+  }
+  .map-lightbox-close:hover { background: #e8112f; }
+
   /* CENTRAL RALLY */
   .central-rally {
     background: var(--red);
@@ -404,7 +454,6 @@
 
   .central-rally .section-title { color: var(--white); }
 
-  /* FIX: section-title link styling */
   .central-rally .section-title a {
     color: var(--white);
     text-decoration: none;
@@ -414,7 +463,6 @@
     text-decoration: underline;
   }
 
-  /* FIX: section-eyebrow link styling */
   .central-rally .section-eyebrow a {
     color: var(--white);
     text-decoration: underline;
@@ -422,35 +470,6 @@
 
   .central-rally .section-eyebrow a:hover {
     color: var(--cream);
-  }
-
-  .central-details {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 2rem 0;
-  }
-
-  .central-detail {
-    text-align: center;
-  }
-
-  .central-detail-label {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.6);
-    display: block;
-    margin-bottom: 0.25rem;
-  }
-
-  .central-detail-value {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.8rem;
-    color: var(--white);
-    display: block;
   }
 
   .central-rally p {
@@ -540,9 +559,7 @@
     transition: color 0.2s;
   }
 
-  .principles-training a:hover {
-    color: var(--gold);
-  }
+  .principles-training a:hover { color: var(--gold); }
 
   .principles-training-label {
     font-family: 'Oswald', sans-serif;
@@ -656,9 +673,7 @@
     padding: 2.5rem;
   }
 
-  .notice-box .section-eyebrow {
-    margin-bottom: 1.25rem;
-  }
+  .notice-box .section-eyebrow { margin-bottom: 1.25rem; }
 
   .notice-heading {
     font-family: 'Bebas Neue', sans-serif;
@@ -675,13 +690,9 @@
     margin-bottom: 1rem;
   }
 
-  .notice-box p:last-child {
-    margin-bottom: 0;
-  }
+  .notice-box p:last-child { margin-bottom: 0; }
 
-  .notice-box p strong {
-    color: rgba(245,240,232,0.9);
-  }
+  .notice-box p strong { color: rgba(245,240,232,0.9); }
 
   .notice-divider {
     height: 1px;
@@ -702,9 +713,7 @@
     transition: color 0.2s;
   }
 
-  .notice-contact a:hover {
-    color: var(--cream);
-  }
+  .notice-contact a:hover { color: var(--cream); }
 
   /* FOOTER */
   footer {
@@ -743,7 +752,6 @@
   /* RESPONSIVE */
   @media (max-width: 700px) {
     .intersection-grid { grid-template-columns: 1fr; }
-    .oracle-track::before { left: 10px; }
     .central-details { flex-direction: column; gap: 1rem; }
     .notice-box { padding: 1.75rem; }
   }
@@ -807,16 +815,24 @@
         <div class="intersection-cross">Oracle Road at Wetmore Road</div>
         <div class="intersection-host"><a href="https://sosarizona.org/">Co-Host: Save Our Schools</a></div>
         <div class="intersection-host"><a href="https://moveon.org">Co-Host: MoveOn AZ06 Action Cohort</a></div>
+        <button class="map-link" onclick="openMap('wetmore_map.jpg','Parking &amp; Demonstration Area — Oracle at Wetmore Road')">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+          Participant Map
+        </button>
       </div>
 
-  <div class="intersection-card">
-     <span class="intersection-number">2</span>
-     <div class="intersection-badge">Demonstration Point</div>
-     <div class="intersection-name"><a href="https://www.mobilize.us/nokings/event/905745">River Road</a></div>
-     <div class="intersection-cross">Oracle Road at River Road</div>
-     <div class="intersection-host"><a href="https://democracyunitesus.org">Co-Host: Democracy Unites Us</a></div>
-     <div class="intersection-host">Co-Host: Mobilization for Democracy</div>
-</div>
+      <div class="intersection-card">
+        <span class="intersection-number">2</span>
+        <div class="intersection-badge">Demonstration Point</div>
+        <div class="intersection-name"><a href="https://www.mobilize.us/nokings/event/905745">River Road</a></div>
+        <div class="intersection-cross">Oracle Road at River Road</div>
+        <div class="intersection-host"><a href="https://democracyunitesus.org">Co-Host: Democracy Unites Us</a></div>
+        <div class="intersection-host">Co-Host: Mobilization for Democracy</div>
+        <button class="map-link" onclick="openMap('river_map.jpg','Parking &amp; Demonstration Area — Oracle at River Road')">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+          Participant Map
+        </button>
+      </div>
 
       <div class="intersection-card">
         <span class="intersection-number">3</span>
@@ -824,6 +840,10 @@
         <div class="intersection-name"><a href="https://www.mobilize.us/nokings/event/905737">Orange Grove</a></div>
         <div class="intersection-cross">Oracle Road at Orange Grove Road</div>
         <div class="intersection-host"><a href="https://mvuu.org/">Host: Mountain Vista Unitarian Universalist Congregation</a></div>
+        <button class="map-link" onclick="openMap('orangegrove_map.jpg','Parking &amp; Demonstration Area — Oracle at Orange Grove Road')">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+          Participant Map
+        </button>
       </div>
 
       <div class="intersection-card">
@@ -832,6 +852,10 @@
         <div class="intersection-name"><a href="https://www.mobilize.us/nokings/event/905724">Ina Road</a></div>
         <div class="intersection-cross">Oracle Road at Ina Road</div>
         <div class="intersection-host"><a href="https://www.indivisibletucson.org/">Host: Indivisible Tucson Action Alliance</a></div>
+        <button class="map-link" onclick="openMap('ina_map.jpg','Parking &amp; Demonstration Area — Oracle at Ina Road')">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+          Participant Map
+        </button>
       </div>
 
       <div class="intersection-card">
@@ -840,6 +864,10 @@
         <div class="intersection-name"><a href="https://www.mobilize.us/nokings/event/905654">Magee Road</a></div>
         <div class="intersection-cross">Oracle Road at Magee Road</div>
         <div class="intersection-host"><a href="https://www.facebook.com/share/1GkLQGGFvT/?mibextid=wwXIfr">Host: PRICE -Pima Resists ICE</a></div>
+        <button class="map-link" onclick="openMap('magee_map.jpg','Parking &amp; Demonstration Area — Oracle at Magee Road')">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+          Participant Map
+        </button>
       </div>
 
       <div class="intersection-card">
@@ -848,11 +876,43 @@
         <div class="intersection-name"><a href="https://www.mobilize.us/nokings/event/905575">1st & Oracle</a></div>
         <div class="intersection-cross">Oracle Road at 1st Avenue</div>
         <div class="intersection-host">Host: Oro Valley Neighbors for Democracy</div>
+        <button class="map-link" onclick="openMap('first_map.jpg','Parking &amp; Demonstration Area — Oracle at 1st Avenue, Oro Valley')">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+          Participant Map
+        </button>
       </div>
 
     </div>
   </div>
 </div>
+
+<!-- LIGHTBOX -->
+<div class="map-lightbox" id="mapLightbox" onclick="closeLightboxOnBackdrop(event)">
+  <div class="map-lightbox-inner">
+    <button class="map-lightbox-close" onclick="closeMap()" aria-label="Close map">✕</button>
+    <img id="lightboxImg" src="" alt="Participant map">
+    <p class="map-lightbox-caption" id="lightboxCaption"></p>
+  </div>
+</div>
+
+<script>
+function openMap(src, caption) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightboxCaption').innerHTML = caption;
+  document.getElementById('mapLightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMap() {
+  document.getElementById('mapLightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeLightboxOnBackdrop(e) {
+  if (e.target === document.getElementById('mapLightbox')) closeMap();
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeMap();
+});
+</script>
 
 <div class="divider"></div>
 
@@ -1045,8 +1105,7 @@ window.addEventListener('load', function() {
         <li>Use <strong>chalk-based paint only</strong> on windows. In Arizona sun, non-chalk paint left on surfaces for more than a few hours may cause damage. Chalk paint supplies are available at Michaels.</li>
         <li>If attaching posters to car sides, tape all four edges — anything over 30 mph will peel them off and create a traffic hazard.</li>
         <li>Remove anything long or trailing (flags, streamers, etc.) that could get caught in wheels.</li>
-        <li><strong></strong>Please follow all traffic laws and be particularly careful as thousands of people will be lining the streets and crossing at intersections. </li>
-        <li>People may inadvertently be standing in the road. You are responsible for any damage to your own car as well as your own safety and wellbeing while participating.</strong></li>
+        <li>Please follow all traffic laws and be particularly careful as thousands of people will be lining the streets and crossing at intersections. People may inadvertently be standing in the road. You are responsible for any damage to your own car as well as your own safety and wellbeing while participating.</li>
       </ul>
 
       <p class="notice-contact">For inquiries, please contact <a href="mailto:info@nokings.org">info@nokings.org</a></p>
